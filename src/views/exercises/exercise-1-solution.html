@@ -1,0 +1,91 @@
+{% set exercise = 1 %}
+{% set solution = true %}
+{% extends "views/exercises/exercise-" + exercise + ".html" %}
+
+{% block introduction %}
+	{{ super() }}
+<p><strong>Solution:</strong>
+	Use <code>font-display: swap;</code> for text webfonts
+	and <code>font-display: block;</code> for icon font.
+</p>
+{% endblock %}
+
+{% block styles %}
+<style>
+	@font-face {
+		font-family: 'Raleway';
+		src: url('/assets/fonts/raleway-semibold-webfont.woff2') format("woff2"),
+		url('/assets/fonts/raleway-semibold-webfont.woff') format("woff");
+		font-weight: 600;
+		font-style: normal;
+		font-display: swap;
+	}
+
+	@font-face {
+		font-family: 'Raleway';
+		src: url('/assets/fonts/raleway-medium-webfont.woff2') format("woff2"),
+		url('/assets/fonts/raleway-medium-webfont.woff') format("woff");
+		font-weight: 400;
+		font-style: normal;
+		font-display: swap;
+	}
+
+	@font-face {
+		font-family: 'Kaushan';
+		src: url('/assets/fonts/kaushanscript-regular.woff2') format('woff2'),
+		url('/assets/fonts/kaushanscript-regular.woff') format('woff');
+		font-weight: normal;
+		font-style: normal;
+		font-display: swap;
+	}
+
+	@font-face {
+		font-family: 'Material Icons';
+		font-style: normal;
+		font-weight: 400;
+		src: url(/assets/fonts/MaterialIcons-Regular.eot); /* For IE6-8 */
+		src: local('Material Icons'),
+		local('MaterialIcons-Regular'),
+		url(/assets/fonts/MaterialIcons-Regular.woff2) format('woff2'),
+		url(/assets/fonts/MaterialIcons-Regular.woff) format('woff'),
+		url(/assets/fonts/MaterialIcons-Regular.ttf) format('truetype');
+		font-display: block;
+	}
+
+	.material-icons {
+		font-family: 'Material Icons';
+		font-weight: normal;
+		font-style: normal;
+		font-size: 36px;
+		display: inline-block;
+		line-height: 1;
+		text-transform: none;
+		letter-spacing: normal;
+		word-wrap: normal;
+		white-space: nowrap;
+		direction: ltr;
+		/* Support for all WebKit browsers. */
+		-webkit-font-smoothing: antialiased;
+		/* Support for Safari and Chrome. */
+		text-rendering: optimizeLegibility;
+		/* Support for Firefox. */
+		-moz-osx-font-smoothing: grayscale;
+		/* Support for IE. */
+		font-feature-settings: 'liga';
+	}
+
+	.cc-exercise h2 {
+		font-family: 'Kaushan', serif;
+		font-size: 2em;
+	}
+
+	.cc-exercise p {
+		font-family: 'Raleway', sans-serif;
+	}
+</style>
+{% endblock %}
+
+{% block html %}
+	{{ super() }}
+{% endblock %}
+

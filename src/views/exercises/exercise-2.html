@@ -1,0 +1,96 @@
+{% set exercise = 2 %}
+{% extends "views/_base/exercise.html" %}
+
+{% block introduction %}
+	<h1>Exercise {{ exercise }}</h1>
+	<p><strong>Use the CSS Font Loading API to load the custom fonts and swap the fallback fonts.</strong></p>
+	<ol>
+		<li><strong>Declare</strong> the FontFaces.</li>
+		<li><strong>Add</strong> the FontFaces.</li>
+		<li><strong>Load</strong> the FontFaces.</li>
+		<li><strong>Track the status</strong> of all FontFaces.</li>
+		<li><strong>Track the status</strong> of individual FontFaces.</li>
+	</ol>
+{% endblock %}
+
+{% block styles %}
+<style>
+	@font-face {
+		font-family: 'Raleway';
+		src: url('/assets/fonts/raleway-semibold-webfont.woff2') format("woff2"),
+		url('/assets/fonts/raleway-semibold-webfont.woff') format("woff");
+		font-weight: 600;
+		font-style: normal;
+	}
+
+	@font-face {
+		font-family: 'Raleway';
+		src: url('/assets/fonts/raleway-medium-webfont.woff2') format("woff2"),
+		url('/assets/fonts/raleway-medium-webfont.woff') format("woff");
+		font-weight: 400;
+		font-style: normal;
+	}
+
+	@font-face {
+		font-family: 'Kaushan';
+		src: url('/assets/fonts/kaushanscript-regular.woff2') format('woff2'),
+		url('/assets/fonts/kaushanscript-regular.woff') format('woff');
+		font-weight: normal;
+		font-style: normal;
+	}
+
+	@font-face {
+		font-family: 'Material Icons';
+		font-style: normal;
+		font-weight: 400;
+		src: url(/assets/fonts/MaterialIcons-Regular.eot); /* For IE6-8 */
+		src: local('Material Icons'),
+		local('MaterialIcons-Regular'),
+		url(/assets/fonts/MaterialIcons-Regular.woff2) format('woff2'),
+		url(/assets/fonts/MaterialIcons-Regular.woff) format('woff'),
+		url(/assets/fonts/MaterialIcons-Regular.ttf) format('truetype');
+	}
+
+	.material-icons {
+		font-family: 'Material Icons';
+		font-weight: normal;
+		font-style: normal;
+		font-size: 36px;
+		display: inline-block;
+		line-height: 1;
+		text-transform: none;
+		letter-spacing: normal;
+		word-wrap: normal;
+		white-space: nowrap;
+		direction: ltr;
+		/* Support for all WebKit browsers. */
+		-webkit-font-smoothing: antialiased;
+		/* Support for Safari and Chrome. */
+		text-rendering: optimizeLegibility;
+		/* Support for Firefox. */
+		-moz-osx-font-smoothing: grayscale;
+		/* Support for IE. */
+		font-feature-settings: 'liga';
+	}
+
+	.cc-exercise h2 {
+		font-family: 'Kaushan', serif;
+		font-size: 2em;
+	}
+
+	.cc-exercise p {
+		font-family: 'Raleway', sans-serif;
+	}
+</style>
+{% endblock %}
+
+{% block scripts %}
+
+	{# TODO: use the CSS Font Loading API  #}
+
+{% endblock %}
+
+{% block html %}
+	{{ super() }}
+{% endblock %}
+

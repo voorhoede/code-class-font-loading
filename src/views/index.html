@@ -1,0 +1,42 @@
+{% extends "views/_base/base.html" %}
+
+{% block introduction %}
+	<h1>Code Class Font Loading</h1>
+	<blockquote style="margin: 0;">The good thing about @font-face is that fonts are loaded lazily, but the bad thing about @font-face is that fonts are loaded lazily.<br>- <cite><a
+		href="https://medium.com/@matuzo/getting-started-with-css-font-loading-e24e7ffaa791">Manuel Matuzovic</a></cite>
+	</blockquote>
+{% endblock %}
+
+{% block html %}
+<div class="cc-content">
+    <section class="cc-content-section">
+		<h2>Exercises</h2>
+		<ol>
+			<li><a href="/exercise-1">Exercise 1</a></li>
+			<li><a href="/exercise-2">Exercise 2</a></li>
+			<li><a href="/exercise-3">Exercise 3</a></li>
+		</ol>
+	</section>
+
+    <section class="cc-content-section">
+        <div class="cc-content-presentation">
+			<h2>Presentation</h2>
+			<div class="cc-presentation">
+				<iframe src="https://drive.google.com/file/d/1SOqg4Opq_y6tejDC9LZ-zhgfPXJzgL37/preview" width="640" height="480"></iframe>
+			</div>
+        </div>
+    </section>
+
+    <section class="cc-content-section">
+        <div class="cc-content-stream">
+			<h2>Stream</h2>
+			<div class="cc-stream">
+				{# TODO: add url of YouTube stream #}
+				{#
+				<iframe width="560" height="315" src="[URL]" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+				#}
+			</div>
+        </div>
+    </section>
+</div>
+{% endblock %}

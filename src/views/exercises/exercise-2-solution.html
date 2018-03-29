@@ -1,0 +1,181 @@
+{% set exercise = 2 %}
+{% set solution = true %}
+{% extends "views/exercises/exercise-" + exercise + ".html" %}
+
+{% block introduction %}
+	<h1>Exercise {{ exercise }}</h1>
+	<p><strong>Use the CSS Font Loading API to load the custom fonts and swap the fallback fonts.</strong></p>
+	<ol>
+		<li><strong>Declare</strong> the FontFaces.<br>
+			<pre><code>var ralewayRegular = new FontFace('Raleway', 'url(/assets/fonts/raleway-medium-webfont.woff2)', {<br>  style: 'normal',<br>  weight: '400'<br>});</code></pre>
+		</li>
+		<li><strong>Add</strong> the FontFaces.<br>
+			<pre><code>document.fonts.add(ralewayRegular);</code></pre>
+		</li>
+		<li><strong>Load</strong> the FontFaces<br>
+			<pre><code>ralewaySemiBold.load();</code></pre>
+		</li>
+		<li><strong>Track the status</strong> of all FontFaces.<br>
+			<pre><code>ralewaySemiBold.loaded.then(fontLoadedLogger, fontFailedLogger);</code></pre>
+		</li>
+		<li><strong>Track the status</strong> of individual FontFaces.<br>
+			<pre><code>document.fonts.ready.then(function() {<br>  console.log('All fonts loaded', document.fonts);<br>  document.documentElement.classList.add('fonts-loaded');<br>})</code></pre>
+		</li>
+	</ol>
+
+<p><strong>NOTE: </strong> for material icons we add:</p>
+<pre><code>.js .material-icons {
+  visibility: hidden;
+}
+
+.fonts-loaded .material-icons {
+  visibility: visible;
+}</code></pre>
+{% endblock %}
+
+{% block head %}
+<script>document.documentElement.classList.add('js');</script>
+{% endblock %}
+
+{% block styles %}
+<style>
+	@font-face {
+		font-family: 'Raleway';
+		src: url('/assets/fonts/raleway-semibold-webfont.woff2') format("woff2"),
+		url('/assets/fonts/raleway-semibold-webfont.woff') format("woff");
+		font-weight: 600;
+		font-style: normal;
+	}
+
+	@font-face {
+		font-family: 'Raleway';
+		src: url('/assets/fonts/raleway-medium-webfont.woff2') format("woff2"),
+		url('/assets/fonts/raleway-medium-webfont.woff') format("woff");
+		font-weight: 400;
+		font-style: normal;
+	}
+
+	@font-face {
+		font-family: 'Kaushan';
+		src: url('/assets/fonts/kaushanscript-regular.woff2') format('woff2'),
+		url('/assets/fonts/kaushanscript-regular.woff') format('woff');
+		font-weight: normal;
+		font-style: normal;
+	}
+
+	@font-face {
+		font-family: 'Material Icons';
+		font-style: normal;
+		font-weight: 400;
+		src: url(/assets/fonts/MaterialIcons-Regular.eot); /* For IE6-8 */
+		src: local('Material Icons'),
+		local('MaterialIcons-Regular'),
+		url(/assets/fonts/MaterialIcons-Regular.woff2) format('woff2'),
+		url(/assets/fonts/MaterialIcons-Regular.woff) format('woff'),
+		url(/assets/fonts/MaterialIcons-Regular.ttf) format('truetype');
+	}
+
+	.material-icons {
+		font-family: 'Material Icons';
+		font-weight: normal;
+		font-style: normal;
+		font-size: 32px;
+		display: inline-block;
+		line-height: 1;
+		text-transform: none;
+		letter-spacing: normal;
+		word-wrap: normal;
+		white-space: nowrap;
+		direction: ltr;
+		/* Support for all WebKit browsers. */
+		-webkit-font-smoothing: antialiased;
+		/* Support for Safari and Chrome. */
+		text-rendering: optimizeLegibility;
+		/* Support for Firefox. */
+		-moz-osx-font-smoothing: grayscale;
+		/* Support for IE. */
+		font-feature-settings: 'liga';
+	}
+
+	.js .material-icons {
+		visibility: hidden;
+	}
+
+	.fonts-loaded .material-icons {
+		visibility: visible;
+	}
+
+	.cc-exercise h2 {
+		font-family: serif;
+		font-size: 2em;
+	}
+
+	.fonts-loaded .cc-exercise h2 {
+		font-family: 'Kaushan', serif;
+	}
+
+	.cc-exercise p {
+		font-family: sans-serif;
+	}
+
+	.fonts-loaded .cc-exercise p {
+		font-family: 'Raleway', sans-serif;
+	}
+</style>
+{% endblock %}
+
+{% block scripts %}
+<script>
+	if ('fonts' in document && 'ready' in document.fonts) {
+		var ralewayRegular = new FontFace('Raleway', 'url(/assets/fonts/raleway-medium-webfont.woff2)', {
+			style: 'normal',
+			weight: '400'
+		});
+		document.fonts.add(ralewayRegular);
+		ralewayRegular.load();
+		ralewayRegular.loaded.then(fontLoadedLogger, fontFailedLogger);
+
+		var ralewaySemiBold = new FontFace('Raleway', 'url(/assets/fonts/raleway-semibold-webfont.woff2)', {
+			style: 'normal',
+			weight: '600'
+		});
+		document.fonts.add(ralewaySemiBold);
+		ralewaySemiBold.load();
+		ralewaySemiBold.loaded.then(fontLoadedLogger, fontFailedLogger);
+
+		var kushanRegular = new FontFace('Kaushan', 'url(/assets/fonts/kaushanscript-regular.woff2)', {
+			style: 'normal',
+			weight: 'normal'
+		});
+		document.fonts.add(kushanRegular);
+		kushanRegular.load();
+		kushanRegular.loaded.then(fontLoadedLogger, fontFailedLogger);
+
+		var materialIcons = new FontFace('Material Icons', 'url(/assets/fonts/MaterialIcons-Regular.woff2)', {
+			style: 'normal',
+			weight: 'normal'
+		});
+		document.fonts.add(materialIcons);
+		materialIcons.load();
+		materialIcons.loaded.then(fontLoadedLogger, fontFailedLogger);
+
+		// when all fonts are ready
+		document.fonts.ready.then(function() {
+			console.log('All fonts loaded', document.fonts);
+			document.documentElement.classList.add('fonts-loaded');
+		})
+	}
+
+	function fontLoadedLogger(fontFace) {
+		console.log(fontFace.family, fontFace.weight, 'loaded successfully.', fontFace.status);
+	}
+
+	function fontFailedLogger(fontFace) {
+		console.error(fontFace.family, fontFace.weight, 'loading failed', fontFace.status);
+	}
+</script>
+{% endblock %}
+
+{% block html %}
+	{{ super() }}
+{% endblock %}

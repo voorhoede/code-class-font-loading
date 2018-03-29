@@ -1,0 +1,26 @@
+{
+  "name": "code-class-font-loading",
+  "version": "1.0.0",
+  "description": "Code Class Font Loading",
+  "main": "index.js",
+  "scripts": {
+    "start": "nodemon ./index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:voorhoede/code-class-font-loading.git"
+  },
+  "author": "De Voorhoede",
+  "license": "UNLICENSED",
+  "engines": {
+    "node": ">=6.0.0"
+  },
+  "dependencies": {
+    "express": "^4.16.2",
+    "nunjucks": "^3.0.1",
+    "portfinder": "1.0.13"
+  },
+  "devDependencies": {
+    "nodemon": "1.17.2"
+  }
+}
