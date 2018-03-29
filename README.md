@@ -1,4 +1,4 @@
-# Code Class Resource Hints
+# Code Class Font Loading
 
 ## Getting started
 
